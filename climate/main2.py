@@ -122,16 +122,14 @@ elif viz_opt == "One country":
             with st.expander(label = "Click to see data", expanded = False):
                 st.dataframe(parsed_data.set_index("Year")["Temperature Anomaly"])
             
-            '''
-            <!--
-            section below is related to download. Workaround found at 'awesome streamlit' https://discuss.streamlit.io/t/file-download-workaround-added-to-awesome-streamlit-org/1244
-            df = parsed_data.set_index("Year")
-            csv = df.to_csv(index=False)
-            b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
-            href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (***IMPORTANT***: right-click and save as <your_name>.csv)'
-            st.markdown(href, unsafe_allow_html=True)
-            -->
-            '''
+          
+            #section below is related to download. Workaround found at 'awesome streamlit' https://discuss.streamlit.io/t/file-download-workaround-added-to-awesome-streamlit-org/1244
+            #df = parsed_data.set_index("Year")
+            #csv = df.to_csv(index=False)
+            #b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
+            #href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (***IMPORTANT***: right-click and save as <your_name>.csv)'
+            #st.markdown(href, unsafe_allow_html=True)
+            
 else:
     # Display at start
     st.title("Climate Change Dashboard currently displaying land temperature anomalies!")

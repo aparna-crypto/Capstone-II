@@ -192,3 +192,8 @@ def update_charts(country1, country2):
 
 if __name__ == '__main__':
     app.run_server(debug=True, use_reloader=False)
+
+
+#adding for new commits
+#checking if commits are working
+#saving changes
