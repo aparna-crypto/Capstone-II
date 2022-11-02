@@ -135,3 +135,5 @@ else:
     st.title("Climate Change Dashboard currently displaying land temperature anomalies!")
     st.subheader('''Land temperature anomaly is defined as: *"The departure from the average temperature, positive or negative, over a certain period (day, week, month or year)"* ''')
     st.subheader('''To start exploring the data, please use the sidebar on the left side!''')
+    
+  #we just did this
