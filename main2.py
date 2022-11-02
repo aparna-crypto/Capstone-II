@@ -10,7 +10,7 @@ data = load_data("data/Environment_Temperature_change_E_All_Data_NOFLAG.csv")
 # Sidebar label
 st.sidebar.title("Display options")
 
-#Selecting visualization paths
+# Selecting visualization paths
 viz_opt = st.sidebar.selectbox(label="Select what you wish to see!", options=["None","One country", "Multiple countries"])
 
 if viz_opt == "Multiple countries":
