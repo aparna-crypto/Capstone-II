@@ -31,7 +31,7 @@ if viz_opt == "Multiple countries":
             if len(countries) < 4: # Decisions for responsiveness and better text representation
                 st.header(f"Visualizing **LAND** temperature anomalies for **{' & '.join(countries)}**")
                 st.subheader(f"Period: **{low}**-**{high}**, **{period}**")
-                col1, col2 = st.beta_columns([5,1]) # creating display sections
+                col1, col2 = st.columns([5,1]) # creating display sections
                 with col1:
                     st.write("If the plot is too small, click the expander button at the top-right of the chart")
                     st.plotly_chart(fig, use_container_width = True) # instantiating figure and sizing to container
@@ -51,7 +51,7 @@ if viz_opt == "Multiple countries":
                     st.table(min_data[min_data == filt_min.min()])
 
                 # hold data at the bottom of the app
-                with st.beta_expander(label = "Click to see data", expanded = False):
+                with st.expander(label = "Click to see data", expanded = False):
                     st.dataframe(parsed_data.iloc[:,:len(countries)]) # slicing away the color columns because for some reason i can't get rid of them in other way...
                 
                 # section below is related to download. Workaround found at 'awesome streamlit' https://discuss.streamlit.io/t/file-download-workaround-added-to-awesome-streamlit-org/1244
@@ -64,13 +64,13 @@ if viz_opt == "Multiple countries":
             elif len(countries) >= 4:
                 st.header(f"Visualizing **LAND** temperature anomalies for **many countries!**")
                 st.subheader(f"Period: **{low}**-**{high}**, **{period}**")
-                col1, col2 = st.beta_columns([5,1]) # creating display sections
+                col1, col2 = st.columns([5,1]) # creating display sections
                 with col1:
                     st.write("If the plot is too small, click the expander button at the top-right of the chart")
                     st.plotly_chart(fig, use_container_width = True) # instantiating figure and sizing to container
             
                 # hold data at the bottom of the app
-                with st.beta_expander(label = "Click to see data", expanded = False):
+                with st.expander(label = "Click to see data", expanded = False):
                     st.dataframe(parsed_data.iloc[:,:len(countries)]) # slicing away the color columns because for some reason i can't get rid of them in other way...
 
                 with col2:
@@ -100,7 +100,7 @@ elif viz_opt == "One country":
             st.header(f"Visualizing **LAND** temperature anomalies for **{country}**")
             fig = plot_onec(parsed_data, low, high) # creating figure
 
-            col1, col2 = st.beta_columns([5,1]) # creating display sections for better visualization. The syntax means the "portions" of the page width each col takes.
+            col1, col2 = st.columns([5,1]) # creating display sections for better visualization. The syntax means the "portions" of the page width each col takes.
 
             with col1: # plot section
                 st.plotly_chart(fig, use_container_width = True) # instantiating figure and sizing to container
@@ -119,17 +119,21 @@ elif viz_opt == "One country":
                     st.table(parsed_data.loc[idxmin]["Temperature Anomaly"])
             
             # hold data at the bottom of the app
-            with st.beta_expander(label = "Click to see data", expanded = False):
+            with st.expander(label = "Click to see data", expanded = False):
                 st.dataframe(parsed_data.set_index("Year")["Temperature Anomaly"])
-
-            # section below is related to download. Workaround found at 'awesome streamlit' https://discuss.streamlit.io/t/file-download-workaround-added-to-awesome-streamlit-org/1244
+            
+            '''
+            <!--
+            section below is related to download. Workaround found at 'awesome streamlit' https://discuss.streamlit.io/t/file-download-workaround-added-to-awesome-streamlit-org/1244
             df = parsed_data.set_index("Year")
             csv = df.to_csv(index=False)
             b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
             href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (***IMPORTANT***: right-click and save as <your_name>.csv)'
             st.markdown(href, unsafe_allow_html=True)
+            -->
+            '''
 else:
     # Display at start
-    st.title("Welcome to the land temperature anomaly data visualization tool!")
+    st.title("Climate Change Dashboard currently displaying land temperature anomalies!")
     st.subheader('''Land temperature anomaly is defined as: *"The departure from the average temperature, positive or negative, over a certain period (day, week, month or year)"* ''')
     st.subheader('''To start exploring the data, please use the sidebar on the left side!''')
